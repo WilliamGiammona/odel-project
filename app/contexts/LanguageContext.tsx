@@ -42,6 +42,19 @@ const translations = {
     heroMethodologyBtn: "View Methodology",
     heroContext:
       "A comprehensive study conducted with Israeli drivers to understand behavioral patterns and risk factors",
+
+    // Footer
+    footerAboutTitle: "About This Research",
+    footerAboutText:
+      "This study examines the behavioral and environmental factors that contribute to distracted driving among Israeli drivers.",
+    footerQuickLinks: "Quick Links",
+    footerContactTitle: "Contact",
+    footerContactEmail: "Email",
+    footerContactPhone: "Phone",
+    footerRights: "All rights reserved",
+    footerDeveloped: "Research conducted at",
+    footerUniversity: "Tel Aviv University",
+    footerDepartment: "Department of Psychology",
   },
   he: {
     // Navigation
@@ -73,6 +86,19 @@ const translations = {
     heroMethodologyBtn: "צפה במתודולוגיה",
     heroContext:
       "מחקר מקיף שנערך עם נהגים ישראלים להבנת דפוסי התנהגות וגורמי סיכון",
+
+    // Footer
+    footerAboutTitle: "אודות המחקר",
+    footerAboutText:
+      "מחקר זה בוחן את הגורמים ההתנהגותיים והסביבתיים התורמים לנהיגה מוסחת בקרב נהגים ישראלים.",
+    footerQuickLinks: "קישורים מהירים",
+    footerContactTitle: "יצירת קשר",
+    footerContactEmail: "דוא״ל",
+    footerContactPhone: "טלפון",
+    footerRights: "כל הזכויות שמורות",
+    footerDeveloped: "המחקר נערך ב",
+    footerUniversity: "אוניברסיטת תל אביב",
+    footerDepartment: "החוג לפסיכולוגיה",
   },
 };
 
