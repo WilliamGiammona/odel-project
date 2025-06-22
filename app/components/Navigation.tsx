@@ -1,14 +1,15 @@
-// app/components/Navigation.tsx
 "use client";
 
 import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
 
   const navItems = [
     { href: "/", label: t("home") },
@@ -37,7 +38,11 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                  className={`text-gray-700 hover:text-blue-600 transition-colors duration-200 pb-1 border-b-2 ${
+                    pathname === item.href
+                      ? "text-blue-600 border-blue-600"
+                      : "border-transparent"
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -80,7 +85,11 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200"
+                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${
+                    pathname === item.href
+                      ? "bg-blue-100 text-blue-600"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
