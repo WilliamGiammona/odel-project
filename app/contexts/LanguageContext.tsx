@@ -15,9 +15,9 @@ const translations = {
   en: {
     // Navigation
     home: "Home",
-    aboutResearch: "About the Research",
+    aboutResearch: "Research",
     methodology: "Methodology",
-    findings: "Findings",
+    findings: "About",
     implications: "Implications",
     contact: "Contact",
 
@@ -29,13 +29,26 @@ const translations = {
     pageTitle: "Distracted Driving Research - Risk Factors Study",
     pageDescription:
       "Academic research on risk factors that increase the likelihood of distracted driving",
+
+    // Hero Section
+    heroTitle: "Understanding",
+    heroTitleHighlight: "Distracted Driving",
+    heroSubtitle:
+      "Groundbreaking research identifying key risk factors that contribute to driver distraction and road safety",
+    heroCrashStat: "of crashes involve distracted driving",
+    heroLivesStat: "lives lost in 2021 due to distraction",
+    heroTimeStat: "average time eyes off road when texting",
+    heroExploreBtn: "Explore the Research",
+    heroMethodologyBtn: "View Methodology",
+    heroContext:
+      "A comprehensive study conducted with Israeli drivers to understand behavioral patterns and risk factors",
   },
   he: {
     // Navigation
     home: "בית",
-    aboutResearch: "אודות המחקר",
+    aboutResearch: "מחקר",
     methodology: "מתודולוגיה",
-    findings: "ממצאים",
+    findings: "אודות",
     implications: "השלכות",
     contact: "צור קשר",
 
@@ -47,6 +60,19 @@ const translations = {
     pageTitle: "מחקר נהיגה מוסחת - גורמי סיכון בנהיגה",
     pageDescription:
       "מחקר אקדמי על גורמי סיכון המגבירים את הסיכוי לנהיגה מוסחת",
+
+    // Hero Section
+    heroTitle: "הבנת",
+    heroTitleHighlight: "נהיגה מוסחת",
+    heroSubtitle:
+      "מחקר פורץ דרך המזהה גורמי סיכון מרכזיים התורמים להסחת דעת בנהיגה ולבטיחות בדרכים",
+    heroCrashStat: "מהתאונות כוללות נהיגה מוסחת",
+    heroLivesStat: "חיים אבדו ב-2021 עקב הסחת דעת",
+    heroTimeStat: "זמן ממוצע שהעיניים לא על הכביש בעת הודעה",
+    heroExploreBtn: "חקור את המחקר",
+    heroMethodologyBtn: "צפה במתודולוגיה",
+    heroContext:
+      "מחקר מקיף שנערך עם נהגים ישראלים להבנת דפוסי התנהגות וגורמי סיכון",
   },
 };
 

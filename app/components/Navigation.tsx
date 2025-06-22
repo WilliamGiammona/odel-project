@@ -12,9 +12,9 @@ export default function Navigation() {
 
   const navItems = [
     { href: "/", label: t("home") },
-    { href: "/about", label: t("aboutResearch") },
+    { href: "/research", label: t("aboutResearch") },
     { href: "/methodology", label: t("methodology") },
-    { href: "/findings", label: t("findings") },
+    { href: "/about", label: t("findings") },
     { href: "/implications", label: t("implications") },
     { href: "/contact", label: t("contact") },
   ];
@@ -31,8 +31,8 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center space-x-reverse space-x-8 rtl:space-x-reverse">
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-8">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -46,27 +46,30 @@ export default function Navigation() {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex items-center px-3 py-2 rounded text-gray-700 hover:text-blue-600"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {/* Mobile menu button and language switcher */}
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center px-3 py-2 rounded text-gray-700 hover:text-blue-600 cursor-pointer"
             >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -83,9 +86,6 @@ export default function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <LanguageSwitcher />
-              </div>
             </div>
           </div>
         )}
