@@ -1,11 +1,10 @@
-// app/components/HeroSection.tsx
 "use client";
 
 import { useLanguage } from "../contexts/LanguageContext";
 import Link from "next/link";
 
 export default function HeroSection() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-gradient-to-br from-blue-50 to-white py-16 md:py-24">
@@ -13,23 +12,13 @@ export default function HeroSection() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            {language === "en" ? (
-              <>
-                Understanding{" "}
-                <span className="text-blue-600">Distracted Driving</span>
-              </>
-            ) : (
-              <>
-                הבנת <span className="text-blue-600">נהיגה מוסחת</span>
-              </>
-            )}
+            {t("heroTitle")}{" "}
+            <span className="text-blue-600">{t("heroTitleHighlight")}</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-            {language === "en"
-              ? "Groundbreaking research identifying key risk factors that contribute to driver distraction and road safety"
-              : "מחקר פורץ דרך המזהה גורמי סיכון מרכזיים התורמים להסחת דעת בנהיגה ולבטיחות בדרכים"}
+            {t("heroSubtitle")}
           </p>
 
           {/* Key Statistics */}
@@ -38,31 +27,19 @@ export default function HeroSection() {
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
                 28%
               </div>
-              <p className="text-gray-600">
-                {language === "en"
-                  ? "of crashes involve distracted driving"
-                  : "מהתאונות כוללות נהיגה מוסחת"}
-              </p>
+              <p className="text-gray-600">{t("heroCrashStat")}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
                 3,522
               </div>
-              <p className="text-gray-600">
-                {language === "en"
-                  ? "lives lost in 2021 due to distraction"
-                  : "חיים אבדו ב-2021 עקב הסחת דעת"}
-              </p>
+              <p className="text-gray-600">{t("heroLivesStat")}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
                 8 sec
               </div>
-              <p className="text-gray-600">
-                {language === "en"
-                  ? "average time eyes off road when texting"
-                  : "זמן ממוצע שהעיניים לא על הכביש בעת הודעה"}
-              </p>
+              <p className="text-gray-600">{t("heroTimeStat")}</p>
             </div>
           </div>
 
@@ -72,7 +49,7 @@ export default function HeroSection() {
               href="/research"
               className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
             >
-              {language === "en" ? "Explore the Research" : "חקור את המחקר"}
+              {t("heroExploreBtn")}
               <svg
                 className="w-5 h-5 ml-2 rtl:mr-2 rtl:ml-0"
                 fill="none"
@@ -91,16 +68,12 @@ export default function HeroSection() {
               href="/methodology"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors"
             >
-              {language === "en" ? "View Methodology" : "צפה במתודולוגיה"}
+              {t("heroMethodologyBtn")}
             </Link>
           </div>
 
           {/* Research Context */}
-          <div className="mt-12 text-sm text-gray-600">
-            {language === "en"
-              ? "A comprehensive study conducted with Israeli drivers to understand behavioral patterns and risk factors"
-              : "מחקר מקיף שנערך עם נהגים ישראלים להבנת דפוסי התנהגות וגורמי סיכון"}
-          </div>
+          <div className="mt-12 text-sm text-gray-600">{t("heroContext")}</div>
         </div>
       </div>
 
