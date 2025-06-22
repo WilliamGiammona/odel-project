@@ -43,18 +43,20 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg mb-4">
               {t("footerQuickLinks")}
             </h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm hover:text-white transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+            <div className="flex flex-wrap gap-4">
+              {quickLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm hover:text-white transition-colors cursor-pointer"
+                >
+                  {link.label}
+                  {index < quickLinks.length - 1 && (
+                    <span className="text-gray-500 ml-4">|</span>
+                  )}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact Information */}
@@ -68,10 +70,10 @@ export default function Footer() {
                   {t("footerContactEmail")}:{" "}
                 </span>
                 <a
-                  href="mailto:research@tau.ac.il"
+                  href="mailto:research@ruppin.ac.il"
                   className="hover:text-white transition-colors"
                 >
-                  research@tau.ac.il
+                  research@ruppin.ac.il
                 </a>
               </div>
               <div>
@@ -79,10 +81,10 @@ export default function Footer() {
                   {t("footerContactPhone")}:{" "}
                 </span>
                 <a
-                  href="tel:+97236408111"
+                  href="tel:+97298981111"
                   className="hover:text-white transition-colors"
                 >
-                  +972-3-640-8111
+                  +972-9-898-1111
                 </a>
               </div>
             </div>

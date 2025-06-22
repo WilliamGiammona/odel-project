@@ -53,7 +53,7 @@ const translations = {
     footerContactPhone: "Phone",
     footerRights: "All rights reserved",
     footerDeveloped: "Research conducted at",
-    footerUniversity: "Tel Aviv University",
+    footerUniversity: "Ruppin Academic Center",
     footerDepartment: "Department of Psychology",
   },
   he: {
@@ -97,7 +97,7 @@ const translations = {
     footerContactPhone: "טלפון",
     footerRights: "כל הזכויות שמורות",
     footerDeveloped: "המחקר נערך ב",
-    footerUniversity: "אוניברסיטת תל אביב",
+    footerUniversity: "המרכז האקדמי רופין",
     footerDepartment: "החוג לפסיכולוגיה",
   },
 };
