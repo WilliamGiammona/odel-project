@@ -2,6 +2,7 @@
 "use client";
 
 import { useLanguage } from "../contexts/LanguageContext";
+import Image from "next/image";
 
 export default function MethodologyPage() {
   const { language } = useLanguage();
@@ -337,11 +338,22 @@ export default function MethodologyPage() {
             <h3 className="text-2xl font-semibold text-gray-800 mb-3">
               {language === "en" ? "1. Binary Splits" : "1. פיצולים בינאריים"}
             </h3>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed mb-4">
               {language === "en"
                 ? "A binary split places data into one of two groups based on whether values fall above or below a certain threshold. For example, we could split by gender using a threshold of 1.5 (e.g., 1 for male, 2 for female). Binary splits are the building blocks of decision trees."
                 : "פיצול בינארי מחלק את הנתונים לשתי קבוצות לפי אם הערך גבוה או נמוך מסף מסוים. לדוגמה, ניתן לפצל לפי מגדר בעזרת סף של 1.5 (למשל, 1 לגבר, 2 לאישה). פיצולים בינאריים הם אבני הבניין של עצי החלטה."}
             </p>
+            <Image
+              src="/images/methodology/BinarySplit.png"
+              alt={
+                language === "en"
+                  ? "Visual explanation of a binary split"
+                  : "הסבר חזותי לפיצול בינארי"
+              }
+              width={600} // or adjust as needed
+              height={400}
+              className="mx-auto rounded-lg shadow-md"
+            />
           </div>
 
           {/* 2. Decision Trees */}
