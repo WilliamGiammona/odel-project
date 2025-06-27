@@ -16,7 +16,7 @@ export default function Navigation() {
     { href: "/", label: t("home") },
     { href: "/methodology", label: t("methodology") },
     { href: "/about", label: t("findings") },
-    { href: "/implications", label: t("implications") },
+    { href: "/model", label: t("model") },
   ];
 
   return (
