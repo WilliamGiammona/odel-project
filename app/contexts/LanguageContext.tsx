@@ -38,6 +38,7 @@ const translations = {
     heroCrashStat: "of crashes involve distracted driving",
     heroLivesStat: "lives lost in 2021 due to distraction",
     heroTimeStat: "average time eyes off road when texting",
+    heroStatSec: "sec",
     heroExploreBtn: "Explore the Research",
     heroMethodologyBtn: "View Methodology",
     heroContext:
@@ -82,6 +83,7 @@ const translations = {
     heroCrashStat: "מהתאונות כוללות נהיגה מוסחת",
     heroLivesStat: "חיים אבדו ב-2021 עקב הסחת דעת",
     heroTimeStat: "זמן ממוצע שהעיניים לא על הכביש בעת הודעה",
+    heroStatSec: "שניות",
     heroExploreBtn: "חקור את המחקר",
     heroMethodologyBtn: "צפה במתודולוגיה",
     heroContext:

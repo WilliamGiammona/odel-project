@@ -1,3 +1,4 @@
+// app/components/HeroSection.tsx
 "use client";
 
 import { useLanguage } from "../contexts/LanguageContext";
@@ -25,19 +26,19 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                28%
+                8%
               </div>
               <p className="text-gray-600">{t("heroCrashStat")}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                3,522
+                3,275
               </div>
               <p className="text-gray-600">{t("heroLivesStat")}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                8 sec
+                4.6 {t("heroStatSec")}
               </div>
               <p className="text-gray-600">{t("heroTimeStat")}</p>
             </div>
