@@ -1,3 +1,4 @@
+// app/methodology/page.tsx
 "use client";
 
 import { useLanguage } from "../contexts/LanguageContext";
@@ -16,103 +17,306 @@ export default function MethodologyPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             {language === "en" ? "Study Design" : "תכנון המחקר"}
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
+          <p className="text-gray-700 leading-relaxed mb-6">
             {language === "en"
-              ? "This research employs a mixed-methods approach, combining quantitative surveys with qualitative interviews to gain comprehensive insights into distracted driving behaviors."
-              : "מחקר זה משתמש בגישת שיטות מעורבות, המשלבת סקרים כמותיים עם ראיונות איכותניים כדי להשיג תובנות מקיפות על התנהגויות נהיגה מוסחת."}
+              ? "This study employed a quantitative, predictive research design using data from a survey of 169 participants. The objective was to identify the most influential psychological, behavioral, and demographic predictors of distracted driving, using both Linear Regression and Random Forest classification models."
+              : "מחקר זה השתמש בתכנון מחקר כמותי וניבויי תוך שימוש בנתונים מסקר של 169 משתתפים. המטרה הייתה לזהות את המנבאים הפסיכולוגיים, ההתנהגותיים והדמוגרפיים המשפיעים ביותר של נהיגה מוסחת, תוך שימוש במודלים של רגרסיה ליניארית וסיווג Random Forest."}
           </p>
-        </section>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            {language === "en" ? "Participants" : "משתתפים"}
-          </h2>
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <ul className="space-y-2 text-gray-700">
-              <li>
-                <strong>
-                  {language === "en" ? "Sample Size:" : "גודל מדגם:"}
-                </strong>{" "}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              {language === "en" ? "Dependent Variable" : "משתנה תלוי"}
+            </h3>
+            <p className="text-gray-700 mb-3">
+              {language === "en"
+                ? "The outcome variable was binary:"
+                : "משתנה התוצאה היה בינארי:"}
+            </p>
+            <ul className="list-disc list-inside ml-4 mb-4 text-gray-700">
+              <li className="font-semibold">
                 {language === "en"
-                  ? "500 Israeli drivers"
-                  : "500 נהגים ישראלים"}
-              </li>
-              <li>
-                <strong>
-                  {language === "en" ? "Age Range:" : "טווח גילאים:"}
-                </strong>{" "}
-                18-65
-              </li>
-              <li>
-                <strong>
-                  {language === "en"
-                    ? "Gender Distribution:"
-                    : "התפלגות מגדרית:"}
-                </strong>{" "}
-                {language === "en" ? "Balanced representation" : "ייצוג מאוזן"}
-              </li>
-              <li>
-                <strong>{language === "en" ? "Experience:" : "ניסיון:"}</strong>{" "}
-                {language === "en"
-                  ? "Minimum 2 years driving experience"
-                  : "מינימום שנתיים ניסיון נהיגה"}
+                  ? "Distracted (1) or Not Distracted (0)"
+                  : "מוסח (1) או לא מוסח (0)"}
               </li>
             </ul>
+            <p className="text-gray-700 mb-4">
+              {language === "en"
+                ? "This classification was derived from participant responses to 7 questions about behaviors in the past 30 days:"
+                : "סיווג זה נגזר מתגובות המשתתפים ל-7 שאלות על התנהגויות ב-30 הימים האחרונים:"}
+            </p>
+            <ol className="list-decimal list-inside ml-4 space-y-2 text-gray-700">
+              <li>
+                {language === "en"
+                  ? "Reading text/email while driving"
+                  : "קריאת טקסט/אימייל בזמן נהיגה"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Reading text/email while stopped at a red light"
+                  : "קריאת טקסט/אימייל בעצירה ברמזור אדום"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Looking at navigation apps while driving"
+                  : "הסתכלות באפליקציות ניווט בזמן נהיגה"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Writing text/email while driving"
+                  : "כתיבת טקסט/אימייל בזמן נהיגה"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Writing text/email while at a red light"
+                  : "כתיבת טקסט/אימייל ברמזור אדום"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Looking at social media while driving"
+                  : "הסתכלות ברשתות חברתיות בזמן נהיגה"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Looking at social media while at a red light"
+                  : "הסתכלות ברשתות חברתיות ברמזור אדום"}
+              </li>
+            </ol>
+            <p className="text-gray-700 mt-4">
+              {language === "en"
+                ? "Each question was rated from 1 (Never) to 5 (Always). A total score greater than 21 indicated a distracted driver."
+                : "כל שאלה דורגה מ-1 (אף פעם) עד 5 (תמיד). ציון כולל גבוה מ-21 הצביע על נהג מוסח."}
+            </p>
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             {language === "en"
-              ? "Data Collection Methods"
-              : "שיטות איסוף נתונים"}
+              ? "Independent Variables (33 total)"
+              : "משתנים בלתי תלויים (33 סה״כ)"}
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <p className="text-gray-700 mb-6">
+            {language === "en"
+              ? "These included a mix of demographic, mindfulness, and attentional behavior features:"
+              : "אלה כללו שילוב של מאפיינים דמוגרפיים, מיינדפולנס והתנהגות קשבית:"}
+          </p>
+
+          <div className="space-y-6">
             <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2">
-                {language === "en" ? "Quantitative Phase" : "שלב כמותי"}
+              <h3 className="font-semibold text-lg mb-3">
+                {language === "en" ? "Demographics:" : "דמוגרפיה:"}
               </h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>
-                  {language === "en" ? "Online surveys" : "סקרים מקוונים"}
-                </li>
-                <li>
-                  {language === "en"
-                    ? "Driving behavior questionnaires"
-                    : "שאלוני התנהגות נהיגה"}
-                </li>
+              <ol className="list-decimal list-inside ml-4 space-y-1 text-gray-700">
+                <li>{language === "en" ? "Gender" : "מגדר"}</li>
+                <li>{language === "en" ? "Age" : "גיל"}</li>
+                <li>{language === "en" ? "Marriage Status" : "מצב משפחתי"}</li>
                 <li>
                   {language === "en"
-                    ? "Risk assessment scales"
-                    : "סולמות הערכת סיכון"}
+                    ? "Income Satisfaction"
+                    : "שביעות רצון מהכנסה"}
                 </li>
-              </ul>
+                <li>{language === "en" ? "Education" : "השכלה"}</li>
+              </ol>
             </div>
+
             <div className="bg-green-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2">
-                {language === "en" ? "Qualitative Phase" : "שלב איכותני"}
+              <h3 className="font-semibold text-lg mb-3">
+                {language === "en"
+                  ? "Attention & Behavior Patterns:"
+                  : "דפוסי קשב והתנהגות:"}
               </h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-700">
+              <ol
+                className="list-decimal list-inside ml-4 space-y-1 text-gray-700"
+                start={6}
+              >
                 <li>
-                  {language === "en" ? "In-depth interviews" : "ראיונות עומק"}
+                  {language === "en"
+                    ? "Delayed Emotion Recognition"
+                    : "זיהוי רגשות מעוכב"}
                 </li>
-                <li>{language === "en" ? "Focus groups" : "קבוצות מיקוד"}</li>
                 <li>
-                  {language === "en" ? "Observational studies" : "מחקרי תצפית"}
+                  {language === "en"
+                    ? "Knock Things Over While Not Paying Attention"
+                    : "הפלת דברים בזמן חוסר קשב"}
                 </li>
-              </ul>
+                <li>
+                  {language === "en"
+                    ? "Not Focused on Present"
+                    : "לא ממוקד בהווה"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Walk Quickly Without Awareness"
+                    : "הליכה מהירה ללא מודעות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Difficulty Feeling Emotional Discomfort"
+                    : "קושי בתחושת אי נוחות רגשית"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Forget Introduction Names"
+                    : "שוכח שמות בהיכרות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Autopilot Mode While Doing Tasks"
+                    : "מצב אוטומטי בביצוע משימות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Rushing Activities Without Attention"
+                    : "ביצוע פעילויות בחיפזון ללא קשב"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Focused on Goal, Not on Current Steps"
+                    : "ממוקד במטרה, לא בצעדים הנוכחיים"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Do Tasks Without Awareness"
+                    : "ביצוע משימות ללא מודעות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Listen While Multitasking"
+                    : "הקשבה תוך ביצוע ריבוי משימות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Drive on Autopilot to Wrong Destination"
+                    : "נהיגה באוטומט ליעד שגוי"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Focused on Future or Past"
+                    : "ממוקד בעתיד או בעבר"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Doing Tasks While Unfocused"
+                    : "ביצוע משימות ללא מיקוד"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Not Focused While Eating"
+                    : "לא ממוקד בזמן אכילה"}
+                </li>
+              </ol>
+            </div>
+
+            <div className="bg-yellow-50 p-6 rounded-lg">
+              <h3 className="font-semibold text-lg mb-3">
+                {language === "en"
+                  ? "Mindfulness & Meditation:"
+                  : "מיינדפולנס ומדיטציה:"}
+              </h3>
+              <ol
+                className="list-decimal list-inside ml-4 space-y-1 text-gray-700"
+                start={21}
+              >
+                <li>
+                  {language === "en"
+                    ? "Practice Mindfulness"
+                    : "תרגול מיינדפולנס"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Days Per Week Meditating"
+                    : "ימים בשבוע של מדיטציה"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Average Meditation Duration"
+                    : "משך מדיטציה ממוצע"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "How Focused Was Meditation"
+                    : "עד כמה הייתה המדיטציה ממוקדת"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Mind Wandering During Meditation"
+                    : "נדודי מחשבות במהלך מדיטציה"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Receptive Attitude During Meditation"
+                    : "גישה קבלנית במהלך מדיטציה"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Self-Compassion During Meditation"
+                    : "חמלה עצמית במהלך מדיטציה"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Pay Attention During Chores"
+                    : "תשומת לב במהלך מטלות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Attention While Working or Studying"
+                    : "קשב בזמן עבודה או לימודים"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Ability to Refocus Attention"
+                    : "יכולת למקד מחדש קשב"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Awareness of Thoughts and Feelings"
+                    : "מודעות למחשבות ורגשות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Healthy Reception of Experience"
+                    : "קבלה בריאה של חוויות"}
+                </li>
+                <li>
+                  {language === "en"
+                    ? "Compassion Toward Yourself"
+                    : "חמלה כלפי עצמך"}
+                </li>
+              </ol>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            {language === "en" ? "Data Analysis" : "ניתוח נתונים"}
+            {language === "en" ? "Modeling Approach" : "גישת המידול"}
           </h2>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 mb-6">
             {language === "en"
-              ? "Statistical analysis will be conducted using SPSS and R, including descriptive statistics, regression analysis, and factor analysis. Qualitative data will be analyzed using thematic analysis techniques."
-              : "ניתוח סטטיסטי יבוצע באמצעות SPSS ו-R, כולל סטטיסטיקה תיאורית, ניתוח רגרסיה וניתוח גורמים. נתונים איכותניים ינותחו באמצעות טכניקות ניתוח תמטי."}
+              ? "While linear regression was initially applied to examine linear relationships, it assumes that the effect of each variable is additive and linear—an assumption unlikely to hold across complex cognitive and behavioral traits. Therefore, a Random Forest classifier was employed to:"
+              : "בעוד שרגרסיה ליניארית יושמה בתחילה לבחינת קשרים ליניאריים, היא מניחה שההשפעה של כל משתנה היא תוספתית וליניארית - הנחה שלא סביר שתתקיים על פני תכונות קוגניטיביות והתנהגותיות מורכבות. לכן, נעשה שימוש במסווג Random Forest כדי:"}
+          </p>
+          <ul className="list-disc list-inside ml-4 space-y-2 text-gray-700 mb-6">
+            <li>
+              {language === "en"
+                ? "Capture non-linear interactions among variables"
+                : "ללכוד אינטראקציות לא-ליניאריות בין משתנים"}
+            </li>
+            <li>
+              {language === "en"
+                ? "Handle high-dimensional data without overfitting"
+                : "לטפל בנתונים רב-ממדיים ללא התאמת יתר"}
+            </li>
+            <li>
+              {language === "en"
+                ? "Provide feature importance rankings to identify which variables most strongly predict distracted driving"
+                : "לספק דירוג חשיבות תכונות לזיהוי המשתנים המנבאים בחוזקה הרבה ביותר נהיגה מוסחת"}
+            </li>
+          </ul>
+          <p className="text-gray-700">
+            {language === "en"
+              ? "This machine learning approach allowed for a deeper, more flexible analysis of how individual characteristics contribute to distracted driving behavior."
+              : "גישת למידת מכונה זו אפשרה ניתוח עמוק וגמיש יותר של האופן שבו מאפיינים אישיים תורמים להתנהגות נהיגה מוסחת."}
           </p>
         </section>
       </div>
