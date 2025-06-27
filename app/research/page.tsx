@@ -19,8 +19,8 @@ export default function ResearchPage() {
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             {language === "en"
-              ? "Distracted driving has become one of the leading causes of road accidents worldwide. With the proliferation of smartphones and in-vehicle technologies, understanding the factors that contribute to driver distraction is more critical than ever."
-              : "נהיגה מוסחת הפכה לאחד הגורמים המובילים לתאונות דרכים ברחבי העולם. עם התפשטות הסמארטפונים והטכנולוגיות ברכב, הבנת הגורמים התורמים להסחת דעת של הנהג קריטית מאי פעם."}
+              ? "Distracted driving is a significant contributor to traffic accidents, especially in environments with widespread access to digital technology. In Israel, drivers face a range of potential distractions, from smartphone use to cognitive overload. Identifying the most predictive factors of distraction can support more targeted interventions and policies."
+              : "נהיגה מוסחת היא גורם משמעותי לתאונות דרכים, במיוחד בסביבות עם גישה נרחבת לטכנולוגיה דיגיטלית. בישראל, נהגים מתמודדים עם מגוון הסחות דעת פוטנציאליות, משימוש בסמארטפון ועד עומס קוגניטיבי. זיהוי הגורמים המנבאים ביותר של הסחת דעת יכול לתמוך בהתערבויות וממדיניות ממוקדות יותר."}
           </p>
         </section>
 
@@ -28,21 +28,21 @@ export default function ResearchPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             {language === "en" ? "Research Objectives" : "מטרות המחקר"}
           </h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className="list-disc list-inside space-y-3 text-gray-700">
             <li>
               {language === "en"
-                ? "Identify key risk factors for distracted driving among Israeli drivers"
-                : "זיהוי גורמי סיכון מרכזיים לנהיגה מוסחת בקרב נהגים ישראלים"}
+                ? "Identify and evaluate the most influential independent variables contributing to distracted driving using machine learning."
+                : "זיהוי והערכת המשתנים הבלתי תלויים המשפיעים ביותר התורמים לנהיגה מוסחת באמצעות למידת מכונה."}
             </li>
             <li>
               {language === "en"
-                ? "Analyze behavioral patterns associated with driver distraction"
-                : "ניתוח דפוסי התנהגות הקשורים להסחת דעת בנהיגה"}
+                ? "Apply a Random Forest classifier to model and rank variable importance based on predictive accuracy."
+                : "יישום מסווג Random Forest למידול ודירוג חשיבות המשתנים על בסיס דיוק חיזוי."}
             </li>
             <li>
               {language === "en"
-                ? "Develop evidence-based recommendations for road safety policies"
-                : "פיתוח המלצות מבוססות ראיות למדיניות בטיחות בדרכים"}
+                ? "Generate insights that can support data-driven interventions for improving driver focus and road safety."
+                : "יצירת תובנות שיכולות לתמוך בהתערבויות מבוססות נתונים לשיפור מיקוד הנהג ובטיחות בדרכים."}
             </li>
           </ul>
         </section>
@@ -52,23 +52,23 @@ export default function ResearchPage() {
             {language === "en" ? "Research Questions" : "שאלות המחקר"}
           </h2>
           <div className="bg-blue-50 p-6 rounded-lg">
-            <ol className="list-decimal list-inside space-y-3 text-gray-700">
+            <ul className="list-disc list-inside space-y-4 text-gray-700">
               <li>
                 {language === "en"
-                  ? "What are the primary factors that lead to distracted driving behaviors?"
-                  : "מהם הגורמים העיקריים המובילים להתנהגויות נהיגה מוסחת?"}
+                  ? "Which behavioral and psychological variables—such as attention control, routine habits, or media consumption—most accurately predict distracted driving?"
+                  : "אילו משתנים התנהגותיים ופסיכולוגיים - כגון שליטה בקשב, הרגלי שגרה או צריכת מדיה - מנבאים בצורה המדויקת ביותר נהיגה מוסחת?"}
               </li>
               <li>
                 {language === "en"
-                  ? "How do demographic variables influence susceptibility to driving distractions?"
-                  : "כיצד משתנים דמוגרפיים משפיעים על הרגישות להסחות דעת בנהיגה?"}
+                  ? "How do factors such as age, gender, mindfulness traits, and meditation practice correlate with self-reported or observed distraction?"
+                  : "כיצד גורמים כגון גיל, מגדר, תכונות מיינדפולנס ותרגול מדיטציה מתואמים עם הסחת דעת מדווחת עצמית או נצפית?"}
               </li>
               <li>
                 {language === "en"
-                  ? "What role does technology play in modern driving distraction patterns?"
-                  : "מה תפקידה של הטכנולוגיה בדפוסי הסחת דעת מודרניים בנהיגה?"}
+                  ? "What are the most important predictors identified by the Random Forest model, and how can these findings inform road safety strategies?"
+                  : "מהם המנבאים החשובים ביותר שזוהו על ידי מודל Random Forest, וכיצד ממצאים אלה יכולים להנחות אסטרטגיות בטיחות בדרכים?"}
               </li>
-            </ol>
+            </ul>
           </div>
         </section>
       </div>
