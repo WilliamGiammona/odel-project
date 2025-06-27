@@ -1,3 +1,4 @@
+// app/components/Navigation.tsx
 "use client";
 
 import Link from "next/link";
@@ -17,7 +18,6 @@ export default function Navigation() {
     { href: "/methodology", label: t("methodology") },
     { href: "/about", label: t("findings") },
     { href: "/implications", label: t("implications") },
-    { href: "/contact", label: t("contact") },
   ];
 
   return (
