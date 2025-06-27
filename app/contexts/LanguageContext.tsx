@@ -38,7 +38,7 @@ const translations = {
     heroLivesStat: "lives lost in 2021 due to distraction",
     heroTimeStat: "average time eyes off road when texting",
     heroStatSec: "sec",
-    heroExploreBtn: "Explore the Research",
+    heroModelBtn: "Explore the Model",
     heroMethodologyBtn: "View Methodology",
     heroContext:
       "A comprehensive study conducted with Israeli drivers to understand behavioral patterns and risk factors",
@@ -70,7 +70,7 @@ const translations = {
     heroLivesStat: "חיים אבדו ב-2021 עקב הסחת דעת",
     heroTimeStat: "זמן ממוצע שהעיניים לא על הכביש בעת הודעה",
     heroStatSec: "שניות",
-    heroExploreBtn: "חקור את המחקר",
+    heroModelBtn: "חקור את המודל",
     heroMethodologyBtn: "צפה במתודולוגיה",
     heroContext:
       "מחקר מקיף שנערך עם נהגים ישראלים להבנת דפוסי התנהגות וגורמי סיכון",
