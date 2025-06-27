@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 export const metadata: Metadata = {
@@ -18,11 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-50 flex flex-col">
+      <body className="min-h-screen bg-gray-50">
         <LanguageProvider>
           <Navigation />
-          <main className="flex-grow flex flex-col">{children}</main>
-          <Footer />
+          <main>{children}</main>
         </LanguageProvider>
       </body>
     </html>

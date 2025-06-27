@@ -7,8 +7,8 @@ export default function AboutPage() {
   const { language } = useLanguage();
 
   return (
-    <div className="container mx-auto px-4 py-12 flex-grow flex flex-col">
-      <div className="max-w-4xl mx-auto flex-grow">
+    <div className="container mx-auto px-4 py-12">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
           {language === "en" ? "About the Researchers" : "אודות החוקרים"}
         </h1>
