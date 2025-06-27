@@ -20,8 +20,8 @@ export default function MethodologyPage() {
           </h2>
           <p className="text-gray-700 leading-relaxed mb-6">
             {language === "en"
-              ? "This study employed a quantitative, predictive research design using data from a survey of 169 participants. The objective was to identify the most influential psychological, behavioral, and demographic predictors of distracted driving, using both Linear Regression and Random Forest classification models."
-              : "מחקר זה השתמש בתכנון מחקר כמותי וניבויי תוך שימוש בנתונים מסקר של 169 משתתפים. המטרה הייתה לזהות את המנבאים הפסיכולוגיים, ההתנהגותיים והדמוגרפיים המשפיעים ביותר של נהיגה מוסחת, תוך שימוש במודלים של רגרסיה ליניארית וסיווג Random Forest."}
+              ? "This study employed a quantitative, predictive research design using data from a survey of 169 participants, of which a percentage were entered into training data and a percentage into testing data. The objective was to identify the most influential psychological, behavioral, and demographic predictors of distracted driving, using both Linear Regression and Random Forest classification models."
+              : "מחקר זה השתמש בתכנון מחקר כמותי וניבויי תוך שימוש בנתונים מסקר של 169 משתתפים, שחלקם הוקצו לנתוני אימון וחלקם לנתוני בדיקה. המטרה הייתה לזהות את המנבאים הפסיכולוגיים, ההתנהגותיים והדמוגרפיים המשפיעים ביותר על נהיגה מוסחת, תוך שימוש במודלים של רגרסיה ליניארית וסיווג Random Forest."}
           </p>
 
           <div className="mb-8">
@@ -361,11 +361,29 @@ export default function MethodologyPage() {
             <h3 className="text-2xl font-semibold text-gray-800 mb-3">
               {language === "en" ? "2. Decision Trees" : "2. עצי החלטה"}
             </h3>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed mb-4">
               {language === "en"
-                ? "A decision tree is made up of many binary splits arranged in a tree structure. Each internal node splits the data further, and the final prediction is made at the leaf node. However, a single tree can overfit the data and may not generalize well."
-                : "עץ החלטה מורכב ממספר פיצולים בינאריים המסודרים במבנה עץ. כל צומת פנימי מבצע פיצול נוסף, והתחזית מתקבלת בעלה. עם זאת, עץ יחיד עלול להיות מותאם יתר על המידה לנתונים ולא להכליל היטב."}
+                ? "A decision tree is built by repeatedly applying binary splits on features that best separate the data. Each internal node makes a decision based on a feature and threshold, and the leaf nodes represent final classifications."
+                : "עץ החלטה נבנה על ידי יישום חוזר של פיצולים בינאריים על תכונות שמפרידות בצורה הטובה ביותר בין הנתונים. כל צומת פנימי מקבל החלטה על סמך תכונה וסף, והעלים מייצגים את הסיווג הסופי."}
             </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {language === "en"
+                ? "To evaluate how well a split separates the data, decision trees use a metric called Gini impurity. Gini measures how often a randomly chosen element would be incorrectly labeled if it were randomly labeled according to the distribution in a node. A Gini of 0 means perfect purity (all samples belong to one class), while 0.5 indicates a 50/50 mix."
+                : "כדי להעריך עד כמה הפיצול מפריד היטב בין הקבוצות, עצי החלטה משתמשים במדד בשם Gini impurity. מדד זה מודד את ההסתברות לטעות סיווג אקראית בצומת. ערך Gini של 0 מעיד על טוהר מושלם (כל הדגימות שייכות למחלקה אחת), בעוד שערך של 0.5 מייצג ערבוב של 50/50."}
+            </p>
+            <div className="flex justify-center my-6">
+              <Image
+                src="/images/methodology/DecisionTree.png"
+                alt={
+                  language === "en"
+                    ? "Decision tree structure with gini values"
+                    : "מבנה עץ החלטה עם ערכי ג'יני"
+                }
+                width={700}
+                height={450}
+                className="rounded-lg shadow-md"
+              />
+            </div>
           </div>
 
           {/* 3. Random Forests */}
