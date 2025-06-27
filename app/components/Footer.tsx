@@ -1,3 +1,4 @@
+// app/components/Footer.tsx
 "use client";
 
 import Link from "next/link";
@@ -13,7 +14,6 @@ export default function Footer() {
     { href: "/methodology", label: t("methodology") },
     { href: "/about", label: t("findings") },
     { href: "/implications", label: t("implications") },
-    { href: "/contact", label: t("contact") },
   ];
 
   return (
