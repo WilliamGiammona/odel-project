@@ -350,7 +350,7 @@ export default function MethodologyPage() {
                   ? "Visual explanation of a binary split"
                   : "הסבר חזותי לפיצול בינארי"
               }
-              width={600} // or adjust as needed
+              width={600}
               height={400}
               className="mx-auto rounded-lg shadow-md"
             />
