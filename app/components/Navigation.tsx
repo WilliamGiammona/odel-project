@@ -14,7 +14,6 @@ export default function Navigation() {
 
   const navItems = [
     { href: "/", label: t("home") },
-    { href: "/research", label: t("aboutResearch") },
     { href: "/methodology", label: t("methodology") },
     { href: "/about", label: t("findings") },
     { href: "/implications", label: t("implications") },
