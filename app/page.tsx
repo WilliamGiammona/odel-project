@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      {/* Additional sections can be added here */}
     </>
   );
 }
