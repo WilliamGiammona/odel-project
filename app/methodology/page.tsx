@@ -391,11 +391,170 @@ export default function MethodologyPage() {
             <h3 className="text-2xl font-semibold text-gray-800 mb-3">
               {language === "en" ? "3. Random Forests" : "3. יערות רנדומליים"}
             </h3>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed mb-4">
               {language === "en"
-                ? "A Random Forest is a collection of decision trees, each trained on different random subsets of the data and features. By averaging or voting on predictions from many trees, Random Forests improve accuracy and reduce overfitting compared to a single tree."
-                : "Random Forest הוא אוסף של עצי החלטה, שכל אחד מהם מאומן על תת-קבוצה שונה של הנתונים והתכונות. על ידי ממוצע או הצבעה של התחזיות מעצים שונים, Random Forest משפר את הדיוק ומפחית התאמת יתר ביחס לעץ יחיד."}
+                ? "A Random Forest is a machine learning model that learns patterns in the data by constructing multiple decision trees. Each tree attempts to predict an outcome (like whether a driver is distracted) based on a series of binary decisions using input variables."
+                : "Random Forest הוא מודל של למידת מכונה שלומד דפוסים בנתונים על ידי בנייה של עצי החלטה מרובים. כל עץ מנסה לחזות תוצאה (למשל, האם נהג מוסח) על בסיס רצף של החלטות בינאריות לפי משתנים קלט."}
             </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {language === "en"
+                ? "As a machine learning model, it 'learns' by identifying which variables and thresholds are most useful for making accurate predictions. The algorithm adjusts its structure during training to minimize prediction errors on known data."
+                : "כמודל של למידת מכונה, הוא 'לומד' על ידי זיהוי אילו משתנים ואילו ערכי סף הכי שימושיים לחיזוי מדויק. האלגוריתם מתאים את המבנה שלו במהלך האימון כדי לצמצם שגיאות חיזוי על סמך נתונים מוכרים."}
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {language === "en"
+                ? "During prediction, each tree in the forest produces a result, and the final outcome is determined by majority voting — the most common prediction wins. This ensemble method increases accuracy and reduces overfitting."
+                : "בשלב החיזוי, כל עץ ביער מייצר תחזית, והתוצאה הסופית נקבעת על פי הצבעת רוב – התחזית השכיחה ביותר מנצחת. שיטת האנסמבל הזו משפרת את הדיוק ומפחיתה התאמת יתר."}
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {language === "en"
+                ? "Random Forests are especially powerful when working with complex, high-dimensional data where relationships between variables may be non-linear or difficult to detect with simpler models."
+                : "Random Forest נחשב חזק במיוחד כשעובדים עם נתונים מורכבים ורבי-ממדים, שבהם הקשרים בין המשתנים אינם ליניאריים או שקשה לזהותם באמצעות מודלים פשוטים יותר."}
+            </p>
+            <div className="flex justify-center my-6">
+              <Image
+                src="/images/methodology/RandomForest.png"
+                alt={
+                  language === "en"
+                    ? "Illustration of Random Forest using multiple decision trees and majority voting"
+                    : "תרשים של Random Forest עם עצי החלטה והצבעת רוב"
+                }
+                width={800}
+                height={500}
+                className="rounded-lg shadow-md"
+              />
+            </div>
+          </div>
+
+          {/* Summary Box */}
+          <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg mb-12">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">
+              {language === "en"
+                ? "Why Use Random Forest?"
+                : "למה להשתמש ב-Random Forest?"}
+            </h4>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>
+                {language === "en"
+                  ? "Reduces overfitting compared to single decision trees"
+                  : "מפחית התאמת יתר ביחס לעץ החלטה בודד"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Handles high-dimensional data with many input features"
+                  : "מתמודד היטב עם נתונים בעלי ממדים גבוהים"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Works well even when relationships between variables are nonlinear"
+                  : "מתאים גם כאשר הקשרים בין המשתנים אינם ליניאריים"}
+              </li>
+              <li>
+                {language === "en"
+                  ? "Provides feature importance scores for interpretability"
+                  : "מספק דירוג חשיבות של משתנים לצורך הבנה טובה יותר"}
+              </li>
+            </ul>
+          </div>
+
+          {/* Section Title */}
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 mt-12">
+            {language === "en"
+              ? "Model Comparison & Summary"
+              : "השוואת מודלים וסיכום"}
+          </h2>
+          {/* Comparison Table */}
+          <div className="overflow-x-auto mb-12">
+            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="text-left px-4 py-2 text-gray-700 font-semibold">
+                    {language === "en" ? "Aspect" : "היבט"}
+                  </th>
+                  <th className="text-left px-4 py-2 text-blue-800 font-semibold">
+                    {language === "en" ? "Random Forest" : "Random Forest"}
+                  </th>
+                  <th className="text-left px-4 py-2 text-green-800 font-semibold">
+                    {language === "en"
+                      ? "Linear Regression"
+                      : "רגרסיה ליניארית"}
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-700">
+                <tr>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "Model Type" : "סוג המודל"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Ensemble (many decision trees)"
+                      : "אנסמבל (רבים עצי החלטה)"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Single linear model"
+                      : "מודל ליניארי יחיד"}
+                  </td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Assumes Linearity?"
+                      : "האם מניח ליניאריות?"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "No" : "לא"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "Yes" : "כן"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Handles Feature Interactions"
+                      : "מתמודד עם אינטראקציות בין משתנים"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "Yes, naturally" : "כן, באופן טבעי"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "No (needs feature engineering)"
+                      : "לא (דורש יצירת משתנים חדשים)"}
+                  </td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Robust to Outliers?"
+                      : "עמיד בפני ערכים קיצוניים?"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "Yes" : "כן"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "No" : "לא"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2">
+                    {language === "en" ? "Interpretability" : "יכולת פירוש"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Provides feature importance but is harder to interpret"
+                      : "מספק חשיבות משתנים אך קשה יותר לפירוש"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {language === "en"
+                      ? "Highly interpretable coefficients"
+                      : "מקדם ליניארי שקל להבין"}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
       </div>
