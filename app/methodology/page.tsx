@@ -319,6 +319,55 @@ export default function MethodologyPage() {
               : "גישת למידת מכונה זו אפשרה ניתוח עמוק וגמיש יותר של האופן שבו מאפיינים אישיים תורמים להתנהגות נהיגה מוסחת."}
           </p>
         </section>
+
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            {language === "en"
+              ? "What is a Random Forest?"
+              : "מהו Random Forest?"}
+          </h2>
+          <p className="text-gray-700 mb-8 text-lg">
+            {language === "en"
+              ? "It's an ensemble of decision trees, which are themselves ensembles of binary splits."
+              : "זהו אנסמבל של עצי החלטה, שכל אחד מהם מורכב בעצמו מפיצולים בינאריים."}
+          </p>
+
+          {/* 1. Binary Splits */}
+          <div className="mb-10">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+              {language === "en" ? "1. Binary Splits" : "1. פיצולים בינאריים"}
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              {language === "en"
+                ? "A binary split places data into one of two groups based on whether values fall above or below a certain threshold. For example, we could split by gender using a threshold of 1.5 (e.g., 1 for male, 2 for female). Binary splits are the building blocks of decision trees."
+                : "פיצול בינארי מחלק את הנתונים לשתי קבוצות לפי אם הערך גבוה או נמוך מסף מסוים. לדוגמה, ניתן לפצל לפי מגדר בעזרת סף של 1.5 (למשל, 1 לגבר, 2 לאישה). פיצולים בינאריים הם אבני הבניין של עצי החלטה."}
+            </p>
+          </div>
+
+          {/* 2. Decision Trees */}
+          <div className="mb-10">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+              {language === "en" ? "2. Decision Trees" : "2. עצי החלטה"}
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              {language === "en"
+                ? "A decision tree is made up of many binary splits arranged in a tree structure. Each internal node splits the data further, and the final prediction is made at the leaf node. However, a single tree can overfit the data and may not generalize well."
+                : "עץ החלטה מורכב ממספר פיצולים בינאריים המסודרים במבנה עץ. כל צומת פנימי מבצע פיצול נוסף, והתחזית מתקבלת בעלה. עם זאת, עץ יחיד עלול להיות מותאם יתר על המידה לנתונים ולא להכליל היטב."}
+            </p>
+          </div>
+
+          {/* 3. Random Forests */}
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+              {language === "en" ? "3. Random Forests" : "3. יערות רנדומליים"}
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              {language === "en"
+                ? "A Random Forest is a collection of decision trees, each trained on different random subsets of the data and features. By averaging or voting on predictions from many trees, Random Forests improve accuracy and reduce overfitting compared to a single tree."
+                : "Random Forest הוא אוסף של עצי החלטה, שכל אחד מהם מאומן על תת-קבוצה שונה של הנתונים והתכונות. על ידי ממוצע או הצבעה של התחזיות מעצים שונים, Random Forest משפר את הדיוק ומפחית התאמת יתר ביחס לעץ יחיד."}
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );
