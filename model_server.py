@@ -11,15 +11,15 @@ with open('random_forest_model.pkl', 'rb') as f:
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configure CORS - update this with your frontend URL when deployed
+# Configure CORS - will update with your Vercel URL later
 CORS(app, origins=[
     "http://localhost:3000",
-    "https://your-app-name.vercel.app"  # Replace with your Vercel URL
+    "https://*.vercel.app"  # This allows any Vercel subdomain
 ])
 
 @app.route('/', methods=['GET'])
 def health_check():
-    return jsonify({'status': 'healthy'})
+    return jsonify({'status': 'healthy', 'message': 'Model server is running'})
 
 @app.route('/predict', methods=['POST'])
 def predict():
