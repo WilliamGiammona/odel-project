@@ -49,13 +49,26 @@ export default function ModelPage() {
           </h2>
           <p className="text-gray-700 mb-4">
             {language === "en"
+              ? "The feature importance graph below reveals which variables the Random Forest model found most useful for predicting distracted driving. Feature importance values range from 0 to approximately 0.12, representing each variable's contribution to the model's decision-making process. The top predictors are dominated by mindfulness-related behaviors, with 'Rushing Activities Not Focused' showing the highest importance score (~0.12), followed by 'Age' (~0.10). This suggests that drivers who frequently rush through activities without paying attention are at significantly higher risk for distracted driving. The prominence of mindfulness variables like 'Doing Tasks While Not Focused,' 'Not Focused While Eating,' and operating on 'Autopilot' mode indicates that general attention patterns in daily life strongly correlate with driving behavior. Demographic factors like age and education also play important roles, while traditional factors like gender and marital status show minimal predictive power."
+              : "גרף חשיבות המשתנים להלן חושף אילו משתנים מודל ה-Random Forest מצא כמועילים ביותר לניבוי נהיגה מוסחת. ערכי חשיבות המשתנים נעים בין 0 לכ-0.12, ומייצגים את תרומת כל משתנה לתהליך קבלת ההחלטות של המודל. המנבאים המובילים נשלטים על ידי התנהגויות הקשורות למיינדפולנס, כאשר 'ביצוע פעילויות בחיפזון ללא קשב' מציג את ציון החשיבות הגבוה ביותר (~0.12), ואחריו 'גיל' (~0.10). זה מצביע על כך שנהגים הממהרים לעתים קרובות בפעילויות מבלי לשים לב נמצאים בסיכון גבוה משמעותית לנהיגה מוסחת. הבולטות של משתני מיינדפולנס כמו 'ביצוע משימות ללא מיקוד', 'חוסר מיקוד בזמן אכילה', ותפקוד במצב 'טייס אוטומטי' מעידה שדפוסי קשב כלליים בחיי היומיום מתואמים חזק עם התנהגות נהיגה. גורמים דמוגרפיים כמו גיל והשכלה גם ממלאים תפקידים חשובים, בעוד שגורמים מסורתיים כמו מגדר ומצב משפחתי מראים כוח ניבוי מינימלי."}
+          </p>
+          <p className="text-gray-700 mb-4">
+            {language === "en"
               ? "The most predictive variables were:"
               : "המשתנים החזקים ביותר בניבוי היו:"}
           </p>
           <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
-            <li>Rushing Activities Without Attention</li>
-            <li>Age</li>
-            <li>Doing Tasks While Not Focused</li>
+            <li>
+              {language === "en"
+                ? "Rushing Activities Without Attention"
+                : "ביצוע פעילויות בחיפזון ללא קשב"}
+            </li>
+            <li>{language === "en" ? "Age" : "גיל"}</li>
+            <li>
+              {language === "en"
+                ? "Doing Tasks While Not Focused"
+                : "ביצוע משימות ללא מיקוד"}
+            </li>
           </ul>
           <Image
             src="/images/model/VariableRanking.png"
@@ -67,29 +80,6 @@ export default function ModelPage() {
             width={900}
             height={600}
             className="rounded-lg shadow mb-10"
-          />
-
-          {/* Linear Coefficients (for comparison) */}
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            {language === "en"
-              ? "3. Linear Model Coefficients"
-              : "3. מקדמי המודל הליניארי"}
-          </h2>
-          <p className="text-gray-700 mb-4">
-            {language === "en"
-              ? "Although the focus of this study was on non-linear modeling, we also examined linear coefficients for comparison and interpretability. The graphic below shows the weight assigned to each variable in the linear regression model."
-              : "למרות שהמחקר התמקד במידול לא-ליניארי, בחנו גם את המקדמים של המודל הליניארי לצורך פירוש והשוואה. הגרף להלן מציג את המשקל שהוקצה לכל משתנה במודל הרגרסיה הליניארית."}
-          </p>
-          <Image
-            src="/images/model/VariableCoefficients.png"
-            alt={
-              language === "en"
-                ? "Linear regression coefficients"
-                : "מקדמי רגרסיה ליניארית"
-            }
-            width={900}
-            height={600}
-            className="rounded-lg shadow"
           />
         </section>
       </div>
