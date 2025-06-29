@@ -38,6 +38,21 @@ const initialState = {
   Compassionate_To_Yourself: 3,
 };
 
+const maxValues: Record<string, number> = {
+  Age: 120,
+  How_Many_Days_Per_Week_Meditatoin: 7,
+  How_Focused_Was_Meditation: 5,
+  Did_Mind_Wander_Meditation: 5,
+  Receptive_Attitude_Towards_Experience_Meditation: 5,
+  Gentle_With_Yourself_During_Meditation: 5,
+  Pay_Attention_To_Chores: 5,
+  Pay_Attention_While_Working_Or_Studying: 5,
+  Able_To_Refocus_Attention: 5,
+  Awareness_Of_Thoughts_Or_Feelings: 5,
+  Healthy_Reception: 5,
+  Compassionate_To_Yourself: 5,
+};
+
 const fieldGroups: Record<string, string[]> = {
   Demographics: [
     "Gender",
@@ -214,13 +229,7 @@ export default function ModelInputForm() {
                     onChange={(e) => handleChange(key, e.target.value)}
                     className="border p-2 w-full rounded"
                     min={0}
-                    max={
-                      key.includes("How_Many_Days")
-                        ? 7
-                        : key.includes("Was_Meditation")
-                        ? 5
-                        : 4
-                    }
+                    max={maxValues[key] || 4}
                   />
                 )}
               </div>
