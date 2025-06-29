@@ -1,10 +1,67 @@
 "use client";
 
+import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import Image from "next/image";
 
+const initialState = {
+  Gender: 1,
+  Age: 25,
+  Marriage_Status: 1,
+  Income_Satisfaction: 3,
+  Education: 3,
+  Delayed_Emotion_Recognition: 2,
+  Knock_Things_Over_Not_Paying_Attention: 2,
+  Not_Focused_On_Present: 2,
+  Walk_Quickly_Not_Focused_On_Surroundings: 2,
+  Difficulty_Feeling_Tension_Or_Emotional_Discomfort: 2,
+  Forget_Introduction_Names: 2,
+  Autopilot: 2,
+  Rushing_Activities_Not_Focused: 2,
+  Focused_On_Goal_Not_Current_Steps: 2,
+  Do_Tasks_Without_Awareness: 2,
+  Listen_While_Multitasking: 2,
+  Drive_On_Autopilot_Incorrect_Destination: 2,
+  Focused_On_Future_And_Past: 2,
+  Doing_Tasks_While_Not_Focused: 2,
+  Not_Focused_While_Eating: 2,
+  Practice_Mindfulness: 2,
+  How_Many_Days_Per_Week_Meditatoin: 3,
+  Average_Meditation_Duration: 10,
+  How_Focused_Was_Meditation: 2,
+  Did_Mind_Wander_Meditation: 2,
+  Receptive_Attitude_Towards_Experience_Meditation: 2,
+  Gentle_With_Yourself_During_Meditation: 2,
+  Pay_Attention_To_Chores: 2,
+  Pay_Attention_While_Working_Or_Studying: 2,
+  Able_To_Refocus_Attention: 2,
+  Awareness_Of_Thoughts_Or_Feelings: 2,
+  Healthy_Reception: 2,
+  Compassionate_To_Yourself: 2,
+};
 export default function ModelPage() {
   const { language } = useLanguage();
+  const [inputs, setInputs] = useState(initialState);
+  const [result, setResult] = useState<string | null>(null);
+
+  const handleChange = (key: string, value: string) => {
+    setInputs({ ...inputs, [key]: Number(value) });
+  };
+
+  const handleSubmit = async () => {
+    const res = await fetch("http://localhost:5000/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputs),
+    });
+
+    const data = await res.json();
+    setResult(
+      data.prediction !== undefined
+        ? `Prediction: ${data.prediction}`
+        : `Error: ${data.error}`
+    );
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -81,6 +138,42 @@ export default function ModelPage() {
             height={600}
             className="rounded-lg shadow mb-10"
           />
+        </section>
+
+        {/* NEW: prediction input form */}
+        <section className="mb-12 border-t pt-10">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            {language === "en"
+              ? "Try the Model Yourself"
+              : "נסו את המודל בעצמכם"}
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {Object.entries(inputs).map(([key, value]) => (
+              <div key={key}>
+                <label className="block text-sm font-medium mb-1">
+                  {key.replaceAll("_", " ")}
+                </label>
+                <input
+                  type="number"
+                  value={value}
+                  onChange={(e) => handleChange(key, e.target.value)}
+                  className="border p-2 w-full rounded"
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+          >
+            {language === "en" ? "Predict" : "נבא"}
+          </button>
+
+          {result && (
+            <p className="mt-6 text-xl font-semibold text-gray-800">{result}</p>
+          )}
         </section>
       </div>
     </div>
