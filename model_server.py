@@ -11,18 +11,24 @@ with open('random_forest_model.pkl', 'rb') as f:
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configure CORS - will update with your Vercel URL later
+# Configure CORS - allow multiple origins
 CORS(app, origins=[
     "http://localhost:3000",
-    "https://*.vercel.app"  # This allows any Vercel subdomain
-])
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "https://*.vercel.app"
+], supports_credentials=True)
 
 @app.route('/', methods=['GET'])
 def health_check():
     return jsonify({'status': 'healthy', 'message': 'Model server is running'})
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'ok'})
+        
     try:
         # Get JSON data from the request
         data = request.json
