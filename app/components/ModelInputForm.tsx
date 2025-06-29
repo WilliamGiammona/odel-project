@@ -38,22 +38,7 @@ const initialState = {
   Compassionate_To_Yourself: 3,
 };
 
-const maxValues: Record<string, number> = {
-  Age: 120,
-  How_Many_Days_Per_Week_Meditatoin: 7,
-  How_Focused_Was_Meditation: 5,
-  Did_Mind_Wander_Meditation: 5,
-  Receptive_Attitude_Towards_Experience_Meditation: 5,
-  Gentle_With_Yourself_During_Meditation: 5,
-  Pay_Attention_To_Chores: 5,
-  Pay_Attention_While_Working_Or_Studying: 5,
-  Able_To_Refocus_Attention: 5,
-  Awareness_Of_Thoughts_Or_Feelings: 5,
-  Healthy_Reception: 5,
-  Compassionate_To_Yourself: 5,
-};
-
-const fieldGroups: Record<string, string[]> = {
+const fieldGroups = {
   Demographics: [
     "Gender",
     "Age",
@@ -97,38 +82,139 @@ const fieldGroups: Record<string, string[]> = {
   ],
 };
 
-const labels: Record<string, { en: string; he: string }> = {
-  Gender: { en: "Gender (1=Male, 2=Female)", he: "מגדר (1=זכר, 2=נקבה)" },
-  Age: { en: "Age", he: "גיל" },
-  Marriage_Status: {
-    en: "Marital Status (1=Single, 2=Married)",
-    he: "מצב משפחתי (1=רווק/ה, 2=נשוי/בקשר)",
-  },
-  Income_Satisfaction: {
-    en: "Income Satisfaction",
-    he: "שביעות רצון מהכנסה",
-  },
-  Education: {
-    en: "Education (1=Elementary → 6=Doctorate)",
-    he: "השכלה (1=יסודי → 6=דוקטורט)",
-  },
-  How_Many_Days_Per_Week_Meditatoin: {
-    en: "Days of Meditation per Week",
-    he: "מספר ימי מדיטציה בשבוע",
-  },
-  Average_Meditation_Duration: {
-    en: "Meditation Duration (1=1–5 min, 2=5–10, 3=10+)",
-    he: "משך מדיטציה ממוצע",
-  },
-  Practice_Mindfulness: {
-    en: "Practice Mindfulness (1=Yes, 2=No)",
-    he: "האם אתה מתרגל מיינדפולנס (1=כן, 2=לא)",
-  },
-};
+const labels: Record<string, { en: string; he: string }> = Object.fromEntries(
+  Object.entries({
+    Gender: ["Gender (1=Male, 2=Female)", "מגדר (1=זכר, 2=נקבה)"],
+    Age: ["Age", "גיל"],
+    Marriage_Status: [
+      "Marital Status (1=Single, 2=Married)",
+      "מצב משפחתי (1=רווק/ה, 2=נשוי/ה)",
+    ],
+    Income_Satisfaction: ["Income Satisfaction", "שביעות רצון מהכנסה"],
+    Education: [
+      "Education (1=Elementary → 6=Doctorate)",
+      "השכלה (1=יסודי → 6=דוקטורט)",
+    ],
+    Practice_Mindfulness: [
+      "Practice Mindfulness (1=Yes, 2=No)",
+      "האם אתה מתרגל מיינדפולנס (1=כן, 2=לא)",
+    ],
+    How_Many_Days_Per_Week_Meditatoin: [
+      "Days of Meditation per Week",
+      "ימי מדיטציה בשבוע",
+    ],
+    Average_Meditation_Duration: [
+      "Meditation Duration (1=1–5 min, 2=5–10, 3=10+)",
+      "משך מדיטציה (1=1–5 דקות, 2=5–10, 3=10+)",
+    ],
+    How_Focused_Was_Meditation: [
+      "How Focused Was Meditation",
+      "כמה היית מרוכז במדיטציה",
+    ],
+    Did_Mind_Wander_Meditation: [
+      "Did Mind Wander During Meditation",
+      "האם המחשבות נדדו במדיטציה",
+    ],
+    Receptive_Attitude_Towards_Experience_Meditation: [
+      "Receptive Attitude During Meditation",
+      "עמדה פתוחה כלפי החוויה במדיטציה",
+    ],
+    Gentle_With_Yourself_During_Meditation: [
+      "Gentle With Yourself During Meditation",
+      "עדינות כלפי עצמך במדיטציה",
+    ],
+    Pay_Attention_To_Chores: [
+      "Pay Attention to Chores",
+      "קשב בזמן מטלות שגרתיות",
+    ],
+    Pay_Attention_While_Working_Or_Studying: [
+      "Attention While Working or Studying",
+      "קשב בעבודה או בלימודים",
+    ],
+    Able_To_Refocus_Attention: [
+      "Able to Refocus Attention",
+      "יכולת להחזיר את הקשב",
+    ],
+    Awareness_Of_Thoughts_Or_Feelings: [
+      "Awareness of Thoughts or Feelings",
+      "מודעות למחשבות או רגשות",
+    ],
+    Healthy_Reception: [
+      "Healthy Reception of Inner Experience",
+      "קבלה בריאה של חוויות פנימיות",
+    ],
+    Compassionate_To_Yourself: ["Compassionate to Yourself", "חמלה כלפי עצמך"],
+    Delayed_Emotion_Recognition: [
+      "Delayed Emotion Recognition",
+      "זיהוי רגשות באיחור",
+    ],
+    Knock_Things_Over_Not_Paying_Attention: [
+      "Knock Things Over When Distracted",
+      "הפלת חפצים עקב חוסר קשב",
+    ],
+    Not_Focused_On_Present: [
+      "Not Focused on the Present",
+      "חוסר מיקוד ברגע הנוכחי",
+    ],
+    Walk_Quickly_Not_Focused_On_Surroundings: [
+      "Walk Quickly Without Awareness",
+      "הליכה מהירה בלי תשומת לב לסביבה",
+    ],
+    Difficulty_Feeling_Tension_Or_Emotional_Discomfort: [
+      "Difficulty Noticing Emotional Tension",
+      "קושי בזיהוי מתחים רגשיים",
+    ],
+    Forget_Introduction_Names: [
+      "Forget Names After Introductions",
+      "שכחת שמות לאחר היכרות",
+    ],
+    Autopilot: ["Operate on Autopilot", "פעולה על טייס אוטומטי"],
+    Rushing_Activities_Not_Focused: [
+      "Rush Activities Without Focus",
+      "ביצוע פעולות במהירות בלי מיקוד",
+    ],
+    Focused_On_Goal_Not_Current_Steps: [
+      "Focus Only on Goal",
+      "מיקוד במטרה ולא בצעדים",
+    ],
+    Do_Tasks_Without_Awareness: [
+      "Do Tasks Without Awareness",
+      "ביצוע משימות בלי מודעות",
+    ],
+    Listen_While_Multitasking: [
+      "Listen While Multitasking",
+      "האזנה תוך כדי ביצוע משימות אחרות",
+    ],
+    Drive_On_Autopilot_Incorrect_Destination: [
+      "Drive to Wrong Place on Autopilot",
+      "הגעה ליעד שגוי על טייס אוטומטי",
+    ],
+    Focused_On_Future_And_Past: [
+      "Focused on Future or Past",
+      "מיקוד בעבר או בעתיד",
+    ],
+    Doing_Tasks_While_Not_Focused: [
+      "Doing Tasks Without Focus",
+      "עשיית משימות ללא ריכוז",
+    ],
+    Not_Focused_While_Eating: [
+      "Not Focused While Eating",
+      "חוסר מיקוד בזמן אכילה",
+    ],
+  }).map(([k, [en, he]]) => [k, { en, he }])
+);
+
+const likertOptions = [
+  { value: 1, label: "Always", he: "תמיד" },
+  { value: 2, label: "Often", he: "לעיתים קרובות" },
+  { value: 3, label: "Sometimes", he: "לפעמים" },
+  { value: 4, label: "Rarely", he: "לעיתים נדירות" },
+  { value: 5, label: "Never", he: "אף פעם" },
+];
 
 const dropdownOptions: Record<
   string,
-  { value: number; label: string; he?: string }[]
+  { value: number; label: string; he: string }[]
 > = {
   Gender: [
     { value: 1, label: "Male", he: "זכר" },
@@ -159,9 +245,15 @@ const dropdownOptions: Record<
   Average_Meditation_Duration: [
     { value: 1, label: "1–5 minutes", he: "1–5 דקות" },
     { value: 2, label: "5–10 minutes", he: "5–10 דקות" },
-    { value: 3, label: "10+ minutes", he: "יותר מ־10 דקות" },
+    { value: 3, label: "10+ minutes", he: "10+ דקות" },
   ],
 };
+
+[...fieldGroups.Attention, ...fieldGroups.Mindfulness_Quality].forEach(
+  (key) => {
+    dropdownOptions[key] = likertOptions;
+  }
+);
 
 export default function ModelInputForm() {
   const [inputs, setInputs] = useState(initialState);
@@ -169,7 +261,15 @@ export default function ModelInputForm() {
   const { language } = useLanguage();
 
   const handleChange = (key: string, value: string) => {
-    setInputs({ ...inputs, [key]: Number(value) });
+    let numericValue = Number(value);
+
+    if (key === "Age") {
+      numericValue = Math.min(Math.max(numericValue, 0), 120);
+    } else if (key === "How_Many_Days_Per_Week_Meditatoin") {
+      numericValue = Math.min(Math.max(numericValue, 0), 7);
+    }
+
+    setInputs({ ...inputs, [key]: numericValue });
   };
 
   const handleSubmit = async () => {
@@ -229,7 +329,13 @@ export default function ModelInputForm() {
                     onChange={(e) => handleChange(key, e.target.value)}
                     className="border p-2 w-full rounded"
                     min={0}
-                    max={maxValues[key] || 4}
+                    max={
+                      key === "Age"
+                        ? 120
+                        : key === "How_Many_Days_Per_Week_Meditatoin"
+                        ? 7
+                        : undefined
+                    }
                   />
                 )}
               </div>
