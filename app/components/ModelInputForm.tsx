@@ -265,10 +265,19 @@ const dropdownOptions: Record<
   }
 );
 
+interface PredictionResult {
+  prediction?: number;
+  confidence?: number;
+  error?: string;
+}
+
 export default function ModelInputForm() {
   const [inputs, setInputs] = useState(initialState);
-  const [result, setResult] = useState<string | null>(null);
+  const [result, setResult] = useState<PredictionResult | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { language } = useLanguage();
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000";
 
   const handleChange = (key: string, value: string) => {
     setInputs((prev) => ({
@@ -277,27 +286,59 @@ export default function ModelInputForm() {
     }));
   };
 
-  const handleSubmit = async () => {
-    const parsedInputs = Object.fromEntries(
-      Object.entries(inputs).map(([key, value]) => [
-        key,
-        key === "Age"
-          ? Math.max(0, Math.min(120, Number(value)))
-          : Number(value),
-      ])
-    );
+  const validateForm = () => {
+    if (inputs.Age < 18 || inputs.Age > 100) {
+      alert(
+        language === "en"
+          ? "Please enter a valid age between 18 and 100"
+          : "אנא הזן גיל תקף בין 18 ל-100"
+      );
+      return false;
+    }
+    return true;
+  };
 
-    const res = await fetch("http://127.0.0.1:5000/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(parsedInputs),
-    });
-    const data = await res.json();
-    setResult(
-      data.prediction !== undefined
-        ? `Prediction: ${data.prediction}`
-        : `Error: ${data.error}`
-    );
+  const handleSubmit = async () => {
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    setResult(null);
+
+    try {
+      const parsedInputs = Object.fromEntries(
+        Object.entries(inputs).map(([key, value]) => [
+          key,
+          key === "Age"
+            ? Math.max(0, Math.min(120, Number(value)))
+            : Number(value),
+        ])
+      );
+
+      const res = await fetch(`${API_URL}/predict`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsedInputs),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setResult(data);
+    } catch (error) {
+      setResult({
+        error:
+          error instanceof Error ? error.message : "An unknown error occurred",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setInputs(initialState);
+    setResult(null);
   };
 
   return (
@@ -326,7 +367,7 @@ export default function ModelInputForm() {
                   <select
                     value={inputs[key as keyof typeof inputs]}
                     onChange={(e) => handleChange(key, e.target.value)}
-                    className="border p-2 w-full rounded"
+                    className="border p-2 w-full rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {dropdownOptions[key].map((option) => (
                       <option key={option.value} value={option.value}>
@@ -340,7 +381,7 @@ export default function ModelInputForm() {
                   <>
                     <input
                       type="range"
-                      min={0}
+                      min={18}
                       max={100}
                       step={1}
                       value={inputs.Age}
@@ -358,7 +399,7 @@ export default function ModelInputForm() {
                     pattern="[0-9]*"
                     value={inputs[key as keyof typeof inputs]}
                     onChange={(e) => handleChange(key, e.target.value)}
-                    className="border p-2 w-full rounded"
+                    className="border p-2 w-full rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 )}
               </div>
@@ -366,14 +407,65 @@ export default function ModelInputForm() {
           </div>
         </div>
       ))}
-      <button
-        onClick={handleSubmit}
-        className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 cursor-pointer"
-      >
-        {language === "en" ? "Predict" : "נבא"}
-      </button>
+
+      <div className="flex space-x-4">
+        <button
+          onClick={handleSubmit}
+          disabled={isLoading}
+          className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition-colors"
+        >
+          {isLoading
+            ? language === "en"
+              ? "Predicting..."
+              : "מנבא..."
+            : language === "en"
+            ? "Predict"
+            : "נבא"}
+        </button>
+        <button
+          onClick={handleReset}
+          className="mt-6 bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600 cursor-pointer transition-colors"
+        >
+          {language === "en" ? "Reset" : "אפס"}
+        </button>
+      </div>
+
       {result && (
-        <p className="mt-4 text-xl font-semibold text-gray-800">{result}</p>
+        <div className="mt-6 p-6 bg-blue-50 rounded-lg">
+          <h4 className="text-lg font-semibold mb-2">
+            {language === "en" ? "Prediction Result" : "תוצאת החיזוי"}
+          </h4>
+          {result.error ? (
+            <p className="text-red-600">
+              {language === "en" ? "Error:" : "שגיאה:"} {result.error}
+            </p>
+          ) : (
+            <>
+              <p className="text-xl text-gray-800 font-medium">
+                {result.prediction === 1
+                  ? language === "en"
+                    ? "High Risk of Distracted Driving"
+                    : "סיכון גבוה לנהיגה מוסחת"
+                  : language === "en"
+                  ? "Low Risk of Distracted Driving"
+                  : "סיכון נמוך לנהיגה מוסחת"}
+              </p>
+              {result.confidence && (
+                <p className="text-sm text-gray-600 mt-2">
+                  {language === "en" ? "Confidence:" : "רמת ביטחון:"}{" "}
+                  {(result.confidence * 100).toFixed(1)}%
+                </p>
+              )}
+              <div className="mt-4 p-4 bg-yellow-50 rounded border border-yellow-200">
+                <p className="text-sm text-gray-700">
+                  {language === "en"
+                    ? "This prediction is based on machine learning analysis of behavioral patterns. Always prioritize road safety and avoid distractions while driving."
+                    : "חיזוי זה מבוסס על ניתוח למידת מכונה של דפוסי התנהגות. תמיד תעדיפו בטיחות בדרכים והימנעו מהסחות דעת בזמן נהיגה."}
+                </p>
+              </div>
+            </>
+          )}
+        </div>
       )}
     </div>
   );
