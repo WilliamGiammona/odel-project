@@ -1,67 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import Image from "next/image";
+import ModelInputForm from "../components/ModelInputForm";
 
-const initialState = {
-  Gender: 1,
-  Age: 25,
-  Marriage_Status: 1,
-  Income_Satisfaction: 3,
-  Education: 3,
-  Delayed_Emotion_Recognition: 2,
-  Knock_Things_Over_Not_Paying_Attention: 2,
-  Not_Focused_On_Present: 2,
-  Walk_Quickly_Not_Focused_On_Surroundings: 2,
-  Difficulty_Feeling_Tension_Or_Emotional_Discomfort: 2,
-  Forget_Introduction_Names: 2,
-  Autopilot: 2,
-  Rushing_Activities_Not_Focused: 2,
-  Focused_On_Goal_Not_Current_Steps: 2,
-  Do_Tasks_Without_Awareness: 2,
-  Listen_While_Multitasking: 2,
-  Drive_On_Autopilot_Incorrect_Destination: 2,
-  Focused_On_Future_And_Past: 2,
-  Doing_Tasks_While_Not_Focused: 2,
-  Not_Focused_While_Eating: 2,
-  Practice_Mindfulness: 2,
-  How_Many_Days_Per_Week_Meditatoin: 3,
-  Average_Meditation_Duration: 10,
-  How_Focused_Was_Meditation: 2,
-  Did_Mind_Wander_Meditation: 2,
-  Receptive_Attitude_Towards_Experience_Meditation: 2,
-  Gentle_With_Yourself_During_Meditation: 2,
-  Pay_Attention_To_Chores: 2,
-  Pay_Attention_While_Working_Or_Studying: 2,
-  Able_To_Refocus_Attention: 2,
-  Awareness_Of_Thoughts_Or_Feelings: 2,
-  Healthy_Reception: 2,
-  Compassionate_To_Yourself: 2,
-};
 export default function ModelPage() {
   const { language } = useLanguage();
-  const [inputs, setInputs] = useState(initialState);
-  const [result, setResult] = useState<string | null>(null);
-
-  const handleChange = (key: string, value: string) => {
-    setInputs({ ...inputs, [key]: Number(value) });
-  };
-
-  const handleSubmit = async () => {
-    const res = await fetch("http://localhost:5000/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(inputs),
-    });
-
-    const data = await res.json();
-    setResult(
-      data.prediction !== undefined
-        ? `Prediction: ${data.prediction}`
-        : `Error: ${data.error}`
-    );
-  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -85,8 +29,8 @@ export default function ModelPage() {
           </h2>
           <p className="text-gray-700 mb-4">
             {language === "en"
-              ? "The Random Forest classifier was trained using a 75/25 train-test split, where 75% of the dataset was used for training and the remaining 25% was reserved for validation. This split ensures that the model's performance is evaluated on unseen data, providing a realistic assessment of how well it generalizes to new cases. The model consists of 128 decision trees, each trained on a random subset of features and samples, which helps reduce overfitting and improves prediction stability. With a minimum of 5 samples required per leaf node, the model balances complexity with generalization ability. After training, the model achieved an accuracy of approximately 78.1% on the validation set, indicating that it correctly classifies whether a driver is likely to engage in distracted driving behaviors in nearly 4 out of 5 cases. This performance level suggests that the behavioral and mindfulness-related features captured in the survey data provide substantial predictive power for identifying at-risk drivers."
-              : "מסווג ה-Random Forest אומן באמצעות חלוקה של 75/25, כאשר 75% מהנתונים שימשו לאימון ו-25% הנותרים נשמרו לוולידציה. חלוקה זו מבטיחה שביצועי המודל נבחנים על נתונים שלא נראו קודם, ומספקת הערכה ריאליסטית של יכולת ההכללה שלו למקרים חדשים. המודל מורכב מ-128 עצי החלטה, כאשר כל עץ מאומן על תת-קבוצה אקראית של משתנים ודגימות, מה שמסייע להפחית התאמת יתר ולשפר את יציבות הניבוי. עם דרישה מינימלית של 5 דגימות לכל צומת עלה, המודל מאזן בין מורכבות ליכולת הכללה. לאחר האימון, המודל השיג דיוק של כ-78.1% על מערך הוולידציה, מה שמצביע על כך שהוא מסווג נכונה האם נהג צפוי להיות מעורב בהתנהגויות נהיגה מוסחת בכמעט 4 מתוך 5 מקרים. רמת ביצועים זו מעידה שהמשתנים ההתנהגותיים והקשורים למיינדפולנס שנאספו בנתוני הסקר מספקים כוח ניבוי משמעותי לזיהוי נהגים בסיכון."}
+              ? "The Random Forest classifier was trained using a 75/25 train-test split, where 75% of the dataset was used for training and the remaining 25% was reserved for validation. This split ensures that the model's performance is evaluated on unseen data, providing a realistic assessment of how well it generalizes to new cases. The model consists of 128 decision trees, each trained on a random subset of features and samples, which helps reduce overfitting and improves prediction stability. With a minimum of 5 samples required per leaf node, the model balances complexity with generalization ability. After training, the model achieved an accuracy of approximately 78.1% on the validation set, indicating that it correctly classifies whether a driver is likely to engage in distracted driving behaviors in nearly 4 out of 5 cases."
+              : "מסווג ה-Random Forest אומן באמצעות חלוקה של 75/25, כאשר 75% מהנתונים שימשו לאימון ו-25% הנותרים נשמרו לוולידציה. חלוקה זו מבטיחה שביצועי המודל נבחנים על נתונים שלא נראו קודם, ומספקת הערכה ריאליסטית של יכולת ההכללה שלו למקרים חדשים. המודל מורכב מ-128 עצי החלטה, כאשר כל עץ מאומן על תת-קבוצה אקראית של משתנים ודגימות, מה שמסייע להפחית התאמת יתר ולשפר את יציבות הניבוי. עם דרישה מינימלית של 5 דגימות לכל צומת עלה, המודל מאזן בין מורכבות ליכולת הכללה. לאחר האימון, המודל השיג דיוק של כ-78.1% על מערך הוולידציה."}
           </p>
           <Image
             src="/images/model/accuracy.png"
@@ -106,13 +50,8 @@ export default function ModelPage() {
           </h2>
           <p className="text-gray-700 mb-4">
             {language === "en"
-              ? "The feature importance graph below reveals which variables the Random Forest model found most useful for predicting distracted driving. Feature importance values range from 0 to approximately 0.12, representing each variable's contribution to the model's decision-making process. The top predictors are dominated by mindfulness-related behaviors, with 'Rushing Activities Not Focused' showing the highest importance score (~0.12), followed by 'Age' (~0.10). This suggests that drivers who frequently rush through activities without paying attention are at significantly higher risk for distracted driving. The prominence of mindfulness variables like 'Doing Tasks While Not Focused,' 'Not Focused While Eating,' and operating on 'Autopilot' mode indicates that general attention patterns in daily life strongly correlate with driving behavior. Demographic factors like age and education also play important roles, while traditional factors like gender and marital status show minimal predictive power."
-              : "גרף חשיבות המשתנים להלן חושף אילו משתנים מודל ה-Random Forest מצא כמועילים ביותר לניבוי נהיגה מוסחת. ערכי חשיבות המשתנים נעים בין 0 לכ-0.12, ומייצגים את תרומת כל משתנה לתהליך קבלת ההחלטות של המודל. המנבאים המובילים נשלטים על ידי התנהגויות הקשורות למיינדפולנס, כאשר 'ביצוע פעילויות בחיפזון ללא קשב' מציג את ציון החשיבות הגבוה ביותר (~0.12), ואחריו 'גיל' (~0.10). זה מצביע על כך שנהגים הממהרים לעתים קרובות בפעילויות מבלי לשים לב נמצאים בסיכון גבוה משמעותית לנהיגה מוסחת. הבולטות של משתני מיינדפולנס כמו 'ביצוע משימות ללא מיקוד', 'חוסר מיקוד בזמן אכילה', ותפקוד במצב 'טייס אוטומטי' מעידה שדפוסי קשב כלליים בחיי היומיום מתואמים חזק עם התנהגות נהיגה. גורמים דמוגרפיים כמו גיל והשכלה גם ממלאים תפקידים חשובים, בעוד שגורמים מסורתיים כמו מגדר ומצב משפחתי מראים כוח ניבוי מינימלי."}
-          </p>
-          <p className="text-gray-700 mb-4">
-            {language === "en"
-              ? "The most predictive variables were:"
-              : "המשתנים החזקים ביותר בניבוי היו:"}
+              ? "The feature importance graph below reveals which variables the Random Forest model found most useful for predicting distracted driving. Feature importance values range from 0 to approximately 0.12. The top predictors are dominated by mindfulness-related behaviors, with 'Rushing Activities Not Focused' showing the highest importance score (~0.12), followed by 'Age' (~0.10)."
+              : "גרף חשיבות המשתנים להלן חושף אילו משתנים מודל ה-Random Forest מצא כמועילים ביותר לניבוי נהיגה מוסחת. ערכי החשיבות נעים בין 0 לכ-0.12. המנבאים המובילים כוללים התנהגויות מיינדפולנס בולטות כמו 'ביצוע פעילויות בחיפזון ללא קשב' ו'גיל'."}
           </p>
           <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
             <li>
@@ -140,40 +79,14 @@ export default function ModelPage() {
           />
         </section>
 
-        {/* NEW: prediction input form */}
+        {/* NEW: Interactive Input Form */}
         <section className="mb-12 border-t pt-10">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             {language === "en"
               ? "Try the Model Yourself"
               : "נסו את המודל בעצמכם"}
           </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {Object.entries(inputs).map(([key, value]) => (
-              <div key={key}>
-                <label className="block text-sm font-medium mb-1">
-                  {key.replaceAll("_", " ")}
-                </label>
-                <input
-                  type="number"
-                  value={value}
-                  onChange={(e) => handleChange(key, e.target.value)}
-                  className="border p-2 w-full rounded"
-                />
-              </div>
-            ))}
-          </div>
-
-          <button
-            onClick={handleSubmit}
-            className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-          >
-            {language === "en" ? "Predict" : "נבא"}
-          </button>
-
-          {result && (
-            <p className="mt-6 text-xl font-semibold text-gray-800">{result}</p>
-          )}
+          <ModelInputForm />
         </section>
       </div>
     </div>
