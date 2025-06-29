@@ -247,6 +247,16 @@ const dropdownOptions: Record<
     { value: 2, label: "5–10 minutes", he: "5–10 דקות" },
     { value: 3, label: "10+ minutes", he: "10+ דקות" },
   ],
+  How_Many_Days_Per_Week_Meditatoin: [
+    { value: 0, label: "0 days", he: "0 ימים" },
+    { value: 1, label: "1 day", he: "יום אחד" },
+    { value: 2, label: "2 days", he: "יומיים" },
+    { value: 3, label: "3 days", he: "שלושה ימים" },
+    { value: 4, label: "4 days", he: "ארבעה ימים" },
+    { value: 5, label: "5 days", he: "חמישה ימים" },
+    { value: 6, label: "6 days", he: "שישה ימים" },
+    { value: 7, label: "7 days", he: "שבעה ימים" },
+  ],
 };
 
 [...fieldGroups.Attention, ...fieldGroups.Mindfulness_Quality].forEach(
@@ -261,29 +271,26 @@ export default function ModelInputForm() {
   const { language } = useLanguage();
 
   const handleChange = (key: string, value: string) => {
-    let numericValue = Number(value);
-
-    if (key === "Age") {
-      numericValue = isNaN(numericValue)
-        ? 0
-        : Math.min(Math.max(numericValue, 0), 120);
-    } else if (key === "How_Many_Days_Per_Week_Meditatoin") {
-      numericValue = isNaN(numericValue)
-        ? 0
-        : Math.min(Math.max(numericValue, 0), 7);
-    }
-
     setInputs((prev) => ({
       ...prev,
-      [key]: numericValue,
+      [key]: value,
     }));
   };
 
   const handleSubmit = async () => {
+    const parsedInputs = Object.fromEntries(
+      Object.entries(inputs).map(([key, value]) => [
+        key,
+        key === "Age"
+          ? Math.max(0, Math.min(120, Number(value)))
+          : Number(value),
+      ])
+    );
+
     const res = await fetch("http://127.0.0.1:5000/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(inputs),
+      body: JSON.stringify(parsedInputs),
     });
     const data = await res.json();
     setResult(
@@ -329,25 +336,26 @@ export default function ModelInputForm() {
                       </option>
                     ))}
                   </select>
+                ) : key === "Age" ? (
+                  <>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={inputs.Age}
+                      onChange={(e) => handleChange("Age", e.target.value)}
+                      className="w-full"
+                    />
+                    <p className="text-sm text-gray-600 mt-1">
+                      {inputs.Age} {language === "en" ? "years old" : "שנים"}
+                    </p>
+                  </>
                 ) : (
                   <input
                     type="number"
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    min={
-                      key === "Age"
-                        ? 0
-                        : key === "How_Many_Days_Per_Week_Meditatoin"
-                        ? 0
-                        : undefined
-                    }
-                    max={
-                      key === "Age"
-                        ? 120
-                        : key === "How_Many_Days_Per_Week_Meditatoin"
-                        ? 7
-                        : undefined
-                    }
                     value={inputs[key as keyof typeof inputs]}
                     onChange={(e) => handleChange(key, e.target.value)}
                     className="border p-2 w-full rounded"
