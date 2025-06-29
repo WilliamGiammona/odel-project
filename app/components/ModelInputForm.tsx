@@ -264,12 +264,19 @@ export default function ModelInputForm() {
     let numericValue = Number(value);
 
     if (key === "Age") {
-      numericValue = Math.min(Math.max(numericValue, 0), 120);
+      numericValue = isNaN(numericValue)
+        ? 0
+        : Math.min(Math.max(numericValue, 0), 120);
     } else if (key === "How_Many_Days_Per_Week_Meditatoin") {
-      numericValue = Math.min(Math.max(numericValue, 0), 7);
+      numericValue = isNaN(numericValue)
+        ? 0
+        : Math.min(Math.max(numericValue, 0), 7);
     }
 
-    setInputs({ ...inputs, [key]: numericValue });
+    setInputs((prev) => ({
+      ...prev,
+      [key]: numericValue,
+    }));
   };
 
   const handleSubmit = async () => {
@@ -325,10 +332,15 @@ export default function ModelInputForm() {
                 ) : (
                   <input
                     type="number"
-                    value={inputs[key as keyof typeof inputs]}
-                    onChange={(e) => handleChange(key, e.target.value)}
-                    className="border p-2 w-full rounded"
-                    min={0}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    min={
+                      key === "Age"
+                        ? 0
+                        : key === "How_Many_Days_Per_Week_Meditatoin"
+                        ? 0
+                        : undefined
+                    }
                     max={
                       key === "Age"
                         ? 120
@@ -336,6 +348,9 @@ export default function ModelInputForm() {
                         ? 7
                         : undefined
                     }
+                    value={inputs[key as keyof typeof inputs]}
+                    onChange={(e) => handleChange(key, e.target.value)}
+                    className="border p-2 w-full rounded"
                   />
                 )}
               </div>
