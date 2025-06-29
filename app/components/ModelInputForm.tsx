@@ -84,29 +84,17 @@ const fieldGroups = {
 
 const labels: Record<string, { en: string; he: string }> = Object.fromEntries(
   Object.entries({
-    Gender: ["Gender (1=Male, 2=Female)", "מגדר (1=זכר, 2=נקבה)"],
+    Gender: ["Gender", "מגדר"],
     Age: ["Age", "גיל"],
-    Marriage_Status: [
-      "Marital Status (1=Single, 2=Married)",
-      "מצב משפחתי (1=רווק/ה, 2=נשוי/ה)",
-    ],
+    Marriage_Status: ["Marital Status", "מצב משפחתי"],
     Income_Satisfaction: ["Income Satisfaction", "שביעות רצון מהכנסה"],
-    Education: [
-      "Education (1=Elementary → 6=Doctorate)",
-      "השכלה (1=יסודי → 6=דוקטורט)",
-    ],
-    Practice_Mindfulness: [
-      "Practice Mindfulness (1=Yes, 2=No)",
-      "האם אתה מתרגל מיינדפולנס (1=כן, 2=לא)",
-    ],
+    Education: ["Education", "השכלה"],
+    Practice_Mindfulness: ["Practice Mindfulness", "האם אתה מתרגל מיינדפולנס"],
     How_Many_Days_Per_Week_Meditatoin: [
       "Days of Meditation per Week",
       "ימי מדיטציה בשבוע",
     ],
-    Average_Meditation_Duration: [
-      "Meditation Duration (1=1–5 min, 2=5–10, 3=10+)",
-      "משך מדיטציה (1=1–5 דקות, 2=5–10, 3=10+)",
-    ],
+    Average_Meditation_Duration: ["Meditation Duration", "משך מדיטציה"],
     How_Focused_Was_Meditation: [
       "How Focused Was Meditation",
       "כמה היית מרוכז במדיטציה",
@@ -212,6 +200,13 @@ const likertOptions = [
   { value: 5, label: "Never", he: "אף פעם" },
 ];
 
+const attentionLikertOptions = [
+  { value: 1, label: "Rarely", he: "לעיתים נדירות" },
+  { value: 2, label: "Sometimes", he: "לפעמים" },
+  { value: 3, label: "Often", he: "לעיתים קרובות" },
+  { value: 4, label: "Always", he: "תמיד" },
+];
+
 const dropdownOptions: Record<
   string,
   { value: number; label: string; he: string }[]
@@ -261,7 +256,11 @@ const dropdownOptions: Record<
 
 [...fieldGroups.Attention, ...fieldGroups.Mindfulness_Quality].forEach(
   (key) => {
-    dropdownOptions[key] = likertOptions;
+    if (fieldGroups.Attention.includes(key)) {
+      dropdownOptions[key] = attentionLikertOptions;
+    } else {
+      dropdownOptions[key] = likertOptions;
+    }
   }
 );
 
@@ -411,7 +410,7 @@ export default function ModelInputForm() {
       <div className="flex space-x-4">
         <button
           onClick={handleSubmit}
-          disabled={isLoading}
+          disabled={isLoading || result !== null}
           className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition-colors"
         >
           {isLoading
@@ -444,11 +443,11 @@ export default function ModelInputForm() {
               <p className="text-xl text-gray-800 font-medium">
                 {result.prediction === 1
                   ? language === "en"
-                    ? "High Risk of Distracted Driving"
-                    : "סיכון גבוה לנהיגה מוסחת"
+                    ? "⚠️ High Risk of Distracted Driving"
+                    : "⚠️ סיכון גבוה לנהיגה מוסחת"
                   : language === "en"
-                  ? "Low Risk of Distracted Driving"
-                  : "סיכון נמוך לנהיגה מוסחת"}
+                  ? "✅ Low Risk of Distracted Driving"
+                  : "✅ סיכון נמוך לנהיגה מוסחת"}
               </p>
               {result.confidence && (
                 <p className="text-sm text-gray-600 mt-2">
