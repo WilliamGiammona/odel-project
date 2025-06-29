@@ -28,8 +28,8 @@ export default function ModelPage() {
           </h2>
           <p className="text-gray-700 mb-4">
             {language === "en"
-              ? "The Random Forest was trained on 75% of the dataset and evaluated on the remaining 25%. The model achieved an accuracy of approximately 78.1%."
-              : "המודל אומן על 75% מנתוני המחקר ונבדק על 25% הנותרים. הדיוק שהתקבל היה כ-78.1%."}
+              ? "The Random Forest classifier was trained using a 75/25 train-test split, where 75% of the dataset was used for training and the remaining 25% was reserved for validation. This split ensures that the model's performance is evaluated on unseen data, providing a realistic assessment of how well it generalizes to new cases. The model consists of 128 decision trees, each trained on a random subset of features and samples, which helps reduce overfitting and improves prediction stability. With a minimum of 5 samples required per leaf node, the model balances complexity with generalization ability. After training, the model achieved an accuracy of approximately 78.1% on the validation set, indicating that it correctly classifies whether a driver is likely to engage in distracted driving behaviors in nearly 4 out of 5 cases. This performance level suggests that the behavioral and mindfulness-related features captured in the survey data provide substantial predictive power for identifying at-risk drivers."
+              : "מסווג ה-Random Forest אומן באמצעות חלוקה של 75/25, כאשר 75% מהנתונים שימשו לאימון ו-25% הנותרים נשמרו לוולידציה. חלוקה זו מבטיחה שביצועי המודל נבחנים על נתונים שלא נראו קודם, ומספקת הערכה ריאליסטית של יכולת ההכללה שלו למקרים חדשים. המודל מורכב מ-128 עצי החלטה, כאשר כל עץ מאומן על תת-קבוצה אקראית של משתנים ודגימות, מה שמסייע להפחית התאמת יתר ולשפר את יציבות הניבוי. עם דרישה מינימלית של 5 דגימות לכל צומת עלה, המודל מאזן בין מורכבות ליכולת הכללה. לאחר האימון, המודל השיג דיוק של כ-78.1% על מערך הוולידציה, מה שמצביע על כך שהוא מסווג נכונה האם נהג צפוי להיות מעורב בהתנהגויות נהיגה מוסחת בכמעט 4 מתוך 5 מקרים. רמת ביצועים זו מעידה שהמשתנים ההתנהגותיים והקשורים למיינדפולנס שנאספו בנתוני הסקר מספקים כוח ניבוי משמעותי לזיהוי נהגים בסיכון."}
           </p>
           <Image
             src="/images/model/accuracy.png"
@@ -56,13 +56,6 @@ export default function ModelPage() {
             <li>Rushing Activities Without Attention</li>
             <li>Age</li>
             <li>Doing Tasks While Not Focused</li>
-            <li>Not Focused While Eating</li>
-            <li>Focused On Goal, Not Current Steps</li>
-            <li>Not Focused On Present</li>
-            <li>Knock Things Over While Not Paying Attention</li>
-            <li>Do Tasks Without Awareness</li>
-            <li>Education</li>
-            <li>Autopilot Mode</li>
           </ul>
           <Image
             src="/images/model/VariableRanking.png"
