@@ -230,7 +230,7 @@ export default function ModelInputForm() {
       ))}
       <button
         onClick={handleSubmit}
-        className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 cursor-pointer"
       >
         {language === "en" ? "Predict" : "נבא"}
       </button>
